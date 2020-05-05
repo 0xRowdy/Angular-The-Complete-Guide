@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Recipe } from "../recipe.model";
 @Component({
   selector: "app-recipe-list",
@@ -6,24 +6,29 @@ import { Recipe } from "../recipe.model";
   styleUrls: ["./recipe-list.component.css"],
 })
 export class RecipeListComponent implements OnInit {
+  @Output() recipeWasSelected = new EventEmitter<Recipe>();
   recipes: Recipe[] = [
     new Recipe(
-      "Test Recipe,",
+      "Test Recipe A,",
       "This is a simple test",
-      "https://lh3.googleusercontent.com/proxy/_sVv50xFl4CAWuSlmBdngO1ivNRRiYDCVV_4koSfVrou2xOmToZl_u1FtgeRVvIF4gQJQdMfYzz4XYFj8yGNnwGEiw_kuc-UXcmD_K_fFo8z9eN2OoIfi4hgRvdbD7GrZUtVkAM7DbFjtnm4tiAE"
+      "https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg"
     ),
     new Recipe(
-      "Test Recipe,",
+      "Test Recipe B,",
       "This is a simple test",
-      "https://lh3.googleusercontent.com/proxy/_sVv50xFl4CAWuSlmBdngO1ivNRRiYDCVV_4koSfVrou2xOmToZl_u1FtgeRVvIF4gQJQdMfYzz4XYFj8yGNnwGEiw_kuc-UXcmD_K_fFo8z9eN2OoIfi4hgRvdbD7GrZUtVkAM7DbFjtnm4tiAE"
+      "https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg"
     ),
     new Recipe(
-      "Test Recipe,",
+      "Test Recipe C,",
       "This is a simple test",
-      "https://lh3.googleusercontent.com/proxy/_sVv50xFl4CAWuSlmBdngO1ivNRRiYDCVV_4koSfVrou2xOmToZl_u1FtgeRVvIF4gQJQdMfYzz4XYFj8yGNnwGEiw_kuc-UXcmD_K_fFo8z9eN2OoIfi4hgRvdbD7GrZUtVkAM7DbFjtnm4tiAE"
+      "https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg"
     ),
   ];
   constructor() {}
 
   ngOnInit(): void {}
+
+  onRecipeSelected(recipe: Recipe) {
+    this.recipeWasSelected.emit(recipe);
+  }
 }
